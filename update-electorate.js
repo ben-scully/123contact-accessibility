@@ -1,6 +1,10 @@
 
 document.addEventListener("DOMContentLoaded", function() {
+  var done = false;
   window.addEventListener("message", function(event) {
+    if (done)
+      return;
+
     console.log("event BEFORE", event);
     if (event.origin.indexOf("http://www.accessalliance.org.nz") == -1)
       return;
@@ -13,5 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("electorate", electorate);
 
     $("#id123-control31500616").val(electorate).change();
+    done = true;
   });
 });
