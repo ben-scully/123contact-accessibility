@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var data = event.data;
     console.log("data", data);
 
+    if (!data.electorate)
+      return;
+
     var electorate = data.electorate;
     console.log("electorate", electorate);
 
