@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("message", function(event) {
     console.log("event BEFORE", event);
-    if (event.orgin.indexOf("https://accessalliance.nationbuilder.com") == -1)
+    if (event.origin.indexOf("https://accessalliance.nationbuilder.com") == -1)
       return;
     console.log("event AFTER", event);
 
