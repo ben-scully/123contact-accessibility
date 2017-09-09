@@ -1,25 +1,23 @@
 
+
 document.addEventListener("DOMContentLoaded", function() {
-  var done = false;
-  window.addEventListener("message", function(event) {
-    if (done)
-      return;
+  var url = $('input[name=tmp_form_host]').val();
+  console.log("url", url);
 
-    console.log("event BEFORE", event);
-    if (event.origin.indexOf("http://www.accessalliance.org.nz") == -1)
-      return;
-    console.log("event AFTER", event);
+  var electorate = getParameterByName("electorate", url);
+  console.log("electorate", electorate);
+  $("#id123-control31500616").val(electorate).change();
 
-    var data = event.data;
-    console.log("data", data);
+  var letter = getParameterByName("letter", url);
+  console.log("letter", letter);
 
-    if (!data.electorate)
-      return;
-
-    var electorate = data.electorate;
-    console.log("electorate", electorate);
-
-    $("#id123-control31500616").val(electorate).change();
-    done = true;
-  });
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 });
